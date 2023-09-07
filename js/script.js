@@ -13,8 +13,10 @@ const costoAlKmDecimale = costoAlKm.toFixed(2);
 const costoBigliettoMinorenni = (costoAlKmDecimale - ((costoAlKmDecimale * 20) / 100)).toFixed(2);
 const costoBigliettoOver = (costoAlKmDecimale - ((costoAlKmDecimale * 40) / 100)).toFixed(2);
 
-/* Creo un if con 4 situazioni: la prima è con età fuori scala o non un numero, la seconda nel caso di un minorenne, la terza per un over 65, l'ultima per tutti gli altri casi; tutto testato in console */
-if ((age < 0) || (age > 110) || (isNaN(age))){
+/* Creo un if con 5 situazioni: la prima controlla che i km siano scritti in numero, la seconda è con età fuori scala o non un numero, la terza nel caso di un minorenne, la quarta per gli over 65, l'ultima per tutti gli altri casi; tutto testato in console */
+if (isNaN(km)){
+  console.log("Inserire dei km validi");
+} else if ((age < 0) || (age > 110) || (isNaN(age))){
   console.log("Inserire un'età valida");   
 } else if (age < 18){
   console.log("Il tuo biglietto costa " + costoBigliettoMinorenni + " €");
@@ -27,7 +29,9 @@ if ((age < 0) || (age > 110) || (isNaN(age))){
 /* Funziona, quindi creo la variabile messaggio e vado a selezionare in HTML l'id dell'H1 in modo che il risulttao si veda anche in pagina */
 let messaggio;
 
-if ((age < 0) || (age > 110) || (isNaN(age))){
+if (isNaN(km)){
+  messaggio = `Inserire dei km validi`; 
+} else if ((age < 0) || (age > 110) || (isNaN(age))){
   messaggio = `Inserire un'età valida`;   
 } else if (age < 18){
   messaggio = `Il tuo biglietto costava ${costoAlKmDecimale}€, ma con lo sconto sono ${costoBigliettoMinorenni}€`;
